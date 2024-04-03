@@ -92,7 +92,7 @@ class cond_stage_model(nn.Module):
 
 class eLDM:
 
-    def __init__(self, metafile, num_voxels, device=torch.device('cuda'),
+    def __init__(self, metafile, num_voxels, device=torch.device('cuda:0'),
                  pretrain_root='/kaggle/input/eeg-visual/',
                  logger=None, ddim_steps=250, global_pool=True, use_time_cond=False, clip_tune = True, cls_tune = False):
         # self.ckp_path = os.path.join(pretrain_root, 'model.ckpt')
@@ -122,7 +122,7 @@ class eLDM:
         model.ch_mult = config.model.params.first_stage_config.params.ddconfig.ch_mult
 
         
-        self.device = device    
+        self.device = "cuda:0"    
         self.model = model
         
         self.model.clip_tune = clip_tune
@@ -182,7 +182,7 @@ class eLDM:
             shape = (self.ldm_config.model.params.channels,
                 HW[0] // 2**(num_resolutions-1), HW[1] // 2**(num_resolutions-1))
 
-        model = self.model.to(self.device)
+        model = self.model.to("cuda:0")
         sampler = PLMSSampler(model)
         # sampler = DDIMSampler(model)
         if state is not None:
@@ -200,7 +200,7 @@ class eLDM:
                 print(f"rendering {num_samples} examples in {ddim_steps} steps.")
                 # assert latent.shape[-1] == self.fmri_latent_dim, 'dim error'
                 
-                c, re_latent = model.get_learned_conditioning(repeat(latent, 'h w -> c h w', c=num_samples).to(self.device))
+                c, re_latent = model.get_learned_conditioning(repeat(latent, 'h w -> c h w', c=num_samples).to("cuda:0"))
                 # c = model.get_learned_conditioning(repeat(latent, 'h w -> c h w', c=num_samples).to(self.device))
                 samples_ddim, _ = sampler.sample(S=ddim_steps, 
                                                 conditioning=c,
