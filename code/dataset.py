@@ -316,7 +316,7 @@ class EEGDataset(Dataset):
             self.data = loaded['dataset']        
         self.labels = loaded["labels"]
         self.images = loaded["images"]
-        self.imagenet = 'D:/study/dl/DreamDiffusion/datasets/imageNet_images/imageNet_images'
+        self.imagenet = '/kaggle/input/eeg-visual/imageNet_images/imageNet_images/imageNet_images'
         self.image_transform = image_transform
         self.num_voxels = 440
         self.data_len = 512
