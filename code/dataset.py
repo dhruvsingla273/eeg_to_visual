@@ -240,7 +240,7 @@ class EEGDataset_r(Dataset):
     # Constructor
     def __init__(self, eeg_signals_path, image_transform=identity):
 
-        self.imagenet ='D:/study/dl/DreamDiffusion/datasets/imageNet_images/imageNet_images'
+        self.imagenet ='/kaggle/input/eeg-visual/imageNet_images/imageNet_images/imageNet_images'
         self.image_transform = image_transform
         self.num_voxels = 440
         self.data_len = 512
@@ -276,7 +276,7 @@ class EEGDataset_s(Dataset):
         self.data = loaded['dataset']        
         self.labels = loaded["labels"]
         self.images = loaded["images"]
-        self.imagenet = 'D:/study/dl/DreamDiffusion/datasets/imageNet_images/imageNet_images'
+        self.imagenet = '/kaggle/input/eeg-visual/imageNet_images/imageNet_images/imageNet_images'
         self.image_transform = image_transform
         self.num_voxels = 440
         # Compute size
@@ -386,8 +386,8 @@ class Splitter:
         return self.dataset[self.split_idx[i]]
 
 
-def create_EEG_dataset(eeg_signals_path='../dreamdiffusion/datasets/eeg_5_95_std.pth', 
-            splits_path = '../dreamdiffusion/datasets/block_splits_by_image_single.pth',
+def create_EEG_dataset(eeg_signals_path='/kaggle/input/eeg-visual/eeg_5_95_std.pth', 
+            splits_path = '/kaggle/input/eeg-visual/block_splits_by_image_single.pth',
             # splits_path = '../dreamdiffusion/datasets/block_splits_by_image_all.pth',
             image_transform=identity, subject = 0):
     # if subject == 0:
@@ -405,9 +405,9 @@ def create_EEG_dataset(eeg_signals_path='../dreamdiffusion/datasets/eeg_5_95_std
 
 
 
-def create_EEG_dataset_r(eeg_signals_path='../dreamdiffusion/datasets/eeg_5_95_std.pth', 
+def create_EEG_dataset_r(eeg_signals_path='/kaggle/input/eeg-visual/block_splits_by_image_all.pth', 
             # splits_path = '../dreamdiffusion/datasets/block_splits_by_image_single.pth',
-            splits_path = '../dreamdiffusion/datasets/block_splits_by_image_all.pth',
+            splits_path = '/kaggle/input/eeg-visual/block_splits_by_image_single.pth',
             image_transform=identity):
     if isinstance(image_transform, list):
         dataset_train = EEGDataset_r(eeg_signals_path, image_transform[0])
