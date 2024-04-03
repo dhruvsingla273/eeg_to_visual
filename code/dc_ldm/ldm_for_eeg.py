@@ -186,7 +186,9 @@ class eLDM:
         sampler = PLMSSampler(model)
         # sampler = DDIMSampler(model)
         if state is not None:
-            torch.cuda.set_rng_state(state)
+            torch.manual_seed(42)
+            if torch.cuda.is_available():
+                torch.cuda.manual_seed_all(42)
             
         with model.ema_scope():
             model.eval()
