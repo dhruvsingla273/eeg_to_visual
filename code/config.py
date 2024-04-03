@@ -31,8 +31,8 @@ class Config_MBM_EEG(Config_MAE_fMRI):
         self.mlp_ratio = 1.0
 
         # Project setting
-        self.root_path = 'D:/study/dl/DreamDiffusion/'
-        self.output_path = 'D:/study/dl/DreamDiffusion/exps/'
+        self.root_path = '/kaggle/working/eeg_to_visual'
+        self.output_path = '/kaggle/working/eeg_to_visual/exps'
         self.seed = 2022
         self.roi = 'VC'
         self.aug_times = 1
@@ -54,15 +54,15 @@ class Config_EEG_finetune(Config_MBM_finetune):
     def __init__(self):
         
         # Project setting
-        self.root_path = 'D:/study/dl/DreamDiffusion/'
+        self.root_path = '/kaggle/working/eeg_to_visual/'
         # self.root_path = '.'
-        self.output_path = 'D:/study/dl/DreamDiffusion/exps/'
+        self.output_path = '/kaggle/working/eeg_to_visual/exps/'
 
-        self.eeg_signals_path = os.path.join(self.root_path, 'datasets/eeg_5_95_std.pth')
-        self.splits_path = os.path.join(self.root_path, 'datasets/block_splits_by_image_all.pth')
+        self.eeg_signals_path = '/kaggle/input/eeg-visual/eeg_5_95_std.pth'
+        self.splits_path = '/kaggle/input/eeg-visual/block_splits_by_image_all.pth'
 
         self.dataset = 'EEG' 
-        self.pretrain_mbm_path = 'D:/study/dl/DreamDiffusion/pretrains/eeg_pretrain/checkpoint.pth'
+        self.pretrain_mbm_path = '/kaggle/input/eeg-visual/checkpoint.pth'
 
         self.include_nonavg_test = True
 
@@ -89,12 +89,12 @@ class Config_Generative_Model:
     def __init__(self):
         # project parameters
         self.seed = 2022
-        self.root_path = 'D:/study/dl/DreamDiffusion/'
+        self.root_path = '/kaggle/working/eeg_to_visual/'
         # self.root_path = '.'
-        self.output_path = 'D:/study/dl/DreamDiffusion/exps/'
+        self.output_path = '/kaggle/working/eeg_to_visual/exps'
 
-        self.eeg_signals_path = os.path.join(self.root_path, 'datasets/eeg_5_95_std.pth')
-        self.splits_path = os.path.join(self.root_path, 'datasets/block_splits_by_image_single.pth')
+        self.eeg_signals_path = '/kaggle/input/eeg-visual/eeg_5_95_std.pth'
+        self.splits_path = '/kaggle/input/eeg-visual/block_splits_by_image_all.pth'
         # self.splits_path = os.path.join(self.root_path, 'datasets/block_splits_by_image_all.pth')
         self.roi = 'VC'
         self.patch_size = 4 # 16
@@ -140,8 +140,8 @@ class Config_Cls_Model:
     def __init__(self):
         # project parameters
         self.seed = 2022
-        self.root_path = 'DreamDiffusion/'
-        self.output_path = 'DreamDiffusion/exps/'
+        self.root_path = '/kaggle/working/eeg_to_visual/'
+        self.output_path = '/kaggle/working/eeg_to_visual/exps/'
 
         # self.eeg_signals_path = os.path.join(self.root_path, 'datasets/eeg_5_95_std.pth')
         self.eeg_signals_path = os.path.join(self.root_path, 'datasets/eeg_14_70_std.pth')
