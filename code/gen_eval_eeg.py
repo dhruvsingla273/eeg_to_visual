@@ -78,8 +78,8 @@ if __name__ == '__main__':
     output_path = os.path.join(config.root_path, 'results', 'eval',  
                     '%s'%(datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")))
     
-    # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    device = 'cpu'
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # device = 'cpu'
 
     crop_pix = int(config.crop_ratio*config.img_size)
     img_transform_train = transforms.Compose([

@@ -92,7 +92,7 @@ class cond_stage_model(nn.Module):
 
 class eLDM:
 
-    def __init__(self, metafile, num_voxels, device=torch.device('cpu'),
+    def __init__(self, metafile, num_voxels, device=torch.device('cuda'),
                  pretrain_root='/kaggle/input/eeg-visual/',
                  logger=None, ddim_steps=250, global_pool=True, use_time_cond=False, clip_tune = True, cls_tune = False):
         # self.ckp_path = os.path.join(pretrain_root, 'model.ckpt')
