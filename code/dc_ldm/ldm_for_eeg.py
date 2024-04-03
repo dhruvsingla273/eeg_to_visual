@@ -98,6 +98,7 @@ class eLDM:
         # self.ckp_path = os.path.join(pretrain_root, 'model.ckpt')
         self.ckp_path = os.path.join(pretrain_root, 'v1-5-pruned.ckpt')
         self.config_path = os.path.join(pretrain_root, 'config15.yaml') 
+        print(self.config_path)
         config = OmegaConf.load(self.config_path)
         config.model.params.unet_config.params.use_time_cond = use_time_cond
         config.model.params.unet_config.params.global_pool = global_pool
