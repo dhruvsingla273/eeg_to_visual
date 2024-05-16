@@ -128,7 +128,7 @@ class Config_Generative_Model:
 
         # diffusion sampling parameters
         self.num_samples = 10
-        self.ddim_steps = 50
+        self.ddim_steps = 250
         self.HW = None
         # resume check util
         self.model_meta = None
