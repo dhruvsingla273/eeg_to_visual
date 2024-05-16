@@ -200,6 +200,7 @@ class eLDM:
         with model.ema_scope():
             model.eval()
             for count, item in enumerate(fmri_embedding):
+                
                 if limit is not None:
                     if count >= limit:
                         break
