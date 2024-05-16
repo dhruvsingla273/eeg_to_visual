@@ -870,11 +870,11 @@ def create_EEG_dataset(eeg_signals_path='/kaggle/input/eeg-visual/eeg_5_95_std.p
     # if subject == 0:
         # splits_path = '../dreamdiffusion/datasets/block_splits_by_image_all.pth'
     if isinstance(image_transform, list):
-        dataset_train = EEGDataset(eeg_signals_path, midas = midas,image_transform[0], subject )
-        dataset_test = EEGDataset(eeg_signals_path, midas = midas,image_transform[1], subject)
+        dataset_train = EEGDataset(eeg_signals_path,image_transform[0], subject, midas = midas)
+        dataset_test = EEGDataset(eeg_signals_path,image_transform[1], subject, midas = midas)
     else:
-        dataset_train = EEGDataset(eeg_signals_path,midas = midas, image_transform, subject)
-        dataset_test = EEGDataset(eeg_signals_path,midas = midas, image_transform, subject)
+        dataset_train = EEGDataset(eeg_signals_path, image_transform, subject, midas = midas)
+        dataset_test = EEGDataset(eeg_signals_path, image_transform, subject, midas = midas)
     split_train = Splitter(dataset_train, split_path = splits_path, split_num = 0, split_name = 'train', subject= subject)
     split_test = Splitter(dataset_test, split_path = splits_path, split_num = 0, split_name = 'test', subject = subject)
     return (split_train, split_test)
