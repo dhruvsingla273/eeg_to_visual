@@ -180,6 +180,9 @@ class eLDM:
                 self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
             print(self.ldm_config.model.params.channels, 
                 self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
+            print(self.ldm_config.model.params.image_size)
+            print(self.ldm_config.model.params.channels)
+
             # print(shape)
         else:
             num_resolutions = len(self.ldm_config.model.params.first_stage_config.params.ddconfig.ch_mult)
