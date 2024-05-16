@@ -176,8 +176,9 @@ class eLDM:
         all_samples = []
         if HW is None:
             # print("printing in generate")
-            
             shape = (self.ldm_config.model.params.channels, 
+                self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
+            print(self.ldm_config.model.params.channels, 
                 self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
             # print(shape)
         else:
