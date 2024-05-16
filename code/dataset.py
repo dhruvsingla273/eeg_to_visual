@@ -778,12 +778,7 @@ class EEGDataset(Dataset):
 
     # Get item
     def __getitem__(self, i):
-        midas_transforms = torch.hub.load("intel-isl/MiDaS", "transforms")
-
-        if model_type == "DPT_Large" or model_type == "DPT_Hybrid":
-            transform = midas_transforms.dpt_transform
-        else:
-            transform = midas_transforms.small_transform
+        
         # Process EEG
         # print(self.data[i])
         eeg = self.data[i]["eeg"].float().t()
