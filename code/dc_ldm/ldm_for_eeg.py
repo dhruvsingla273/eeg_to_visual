@@ -171,7 +171,7 @@ class eLDM:
         
 
     @torch.no_grad()
-    def generate(self, fmri_embedding, num_samples, ddim_steps, HW=None, limit=None, state=None, output_path = None):
+    def generate(self, fmri_embedding, num_samples, ddim_steps, HW=None, limit=None, state=None, output_path = None,x_T=None):
         # fmri_embedding: n, seq_len, embed_dim
         all_samples = []
         if HW is None:
@@ -217,7 +217,8 @@ class eLDM:
                                                 conditioning=c,
                                                 batch_size=num_samples,
                                                 shape=shape,
-                                                verbose=False) #have to give the depth map here
+                                                verbose=False,
+                                                x_T=item['depth_map']) #have to give the depth map here
 
                 x_samples_ddim = model.decode_first_stage(samples_ddim)
                 x_samples_ddim = torch.clamp((x_samples_ddim+1.0)/2.0, min=0.0, max=1.0)
