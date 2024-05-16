@@ -217,7 +217,7 @@ class eLDM:
                                                 conditioning=c,
                                                 batch_size=num_samples,
                                                 shape=shape,
-                                                verbose=False)
+                                                verbose=False) #have to give the depth map here
 
                 x_samples_ddim = model.decode_first_stage(samples_ddim)
                 x_samples_ddim = torch.clamp((x_samples_ddim+1.0)/2.0, min=0.0, max=1.0)
