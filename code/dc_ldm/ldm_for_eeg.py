@@ -204,8 +204,9 @@ class eLDM:
                     if count >= limit:
                         break
                 print("gernetrate fxn")
-                print(item.shape)
+                # print(item.shape)
                 latent = item['eeg']
+                print(latent.shape)
                 gt_image = rearrange(item['image'], 'h w c -> 1 c h w') # h w c
                 print(f"rendering {num_samples} examples in {ddim_steps} steps.")
                 # assert latent.shape[-1] == self.fmri_latent_dim, 'dim error'
