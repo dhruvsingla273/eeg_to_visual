@@ -127,7 +127,7 @@ class Config_Generative_Model:
         self.eval_avg = True
 
         # diffusion sampling parameters
-        self.num_samples = 5
+        self.num_samples = 1
         self.ddim_steps = 250
         self.HW = None
         # resume check util
