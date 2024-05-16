@@ -121,6 +121,7 @@ class PLMSSampler(object):
                       unconditional_guidance_scale=1., unconditional_conditioning=None, generator=None):
         device = self.model.betas.device
         b = shape[0]
+        print("shape printing")
         print(shape)
         if x_T is None:
             img = torch.randn(shape, device=device, generator=generator)
