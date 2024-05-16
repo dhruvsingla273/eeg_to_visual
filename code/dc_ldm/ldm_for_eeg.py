@@ -175,11 +175,11 @@ class eLDM:
         # fmri_embedding: n, seq_len, embed_dim
         all_samples = []
         if HW is None:
-            print("printing in generate")
+            # print("printing in generate")
             
             shape = (self.ldm_config.model.params.channels, 
                 self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
-            print(shape)
+            # print(shape)
         else:
             num_resolutions = len(self.ldm_config.model.params.first_stage_config.params.ddconfig.ch_mult)
             shape = (self.ldm_config.model.params.channels,
