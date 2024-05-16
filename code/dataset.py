@@ -751,7 +751,7 @@ class EEGDataset_s(Dataset):
 class EEGDataset(Dataset):
     
     # Constructor
-    def __init__(self, eeg_signals_path, image_transform=identity, subject = 4):
+    def __init__(self, eeg_signals_path, image_transform=identity,midas=None, subject = 4):
         # Load EEG signals
         loaded = torch.load(eeg_signals_path)
         # if opt.subject!=0:
@@ -778,6 +778,12 @@ class EEGDataset(Dataset):
 
     # Get item
     def __getitem__(self, i):
+        midas_transforms = torch.hub.load("intel-isl/MiDaS", "transforms")
+
+        if model_type == "DPT_Large" or model_type == "DPT_Hybrid":
+            transform = midas_transforms.dpt_transform
+        else:
+            transform = midas_transforms.small_transform
         # Process EEG
         # print(self.data[i])
         eeg = self.data[i]["eeg"].float().t()
@@ -800,11 +806,7 @@ class EEGDataset(Dataset):
         image_raw = Image.open(image_path).convert('RGB') 
         
         image = np.array(image_raw) / 255.0
-#         img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-#         img = cv2.resize(image*255.0, (64, 64))
         img = image*255.0
-#         plt.imshow(np.array(image_raw))
-#         plt.show()
         
         input_batch = transform(img).to(device)
 
@@ -859,18 +861,20 @@ class Splitter:
         return self.dataset[self.split_idx[i]]
 
 
+
 def create_EEG_dataset(eeg_signals_path='/kaggle/input/eeg-visual/eeg_5_95_std.pth', 
             splits_path = '/kaggle/input/eeg-visual/block_splits_by_image_single.pth',
+            midas=None,
             # splits_path = '../dreamdiffusion/datasets/block_splits_by_image_all.pth',
             image_transform=identity, subject = 0):
     # if subject == 0:
         # splits_path = '../dreamdiffusion/datasets/block_splits_by_image_all.pth'
     if isinstance(image_transform, list):
-        dataset_train = EEGDataset(eeg_signals_path, image_transform[0], subject )
-        dataset_test = EEGDataset(eeg_signals_path, image_transform[1], subject)
+        dataset_train = EEGDataset(eeg_signals_path, midas = midas,image_transform[0], subject )
+        dataset_test = EEGDataset(eeg_signals_path, midas = midas,image_transform[1], subject)
     else:
-        dataset_train = EEGDataset(eeg_signals_path, image_transform, subject)
-        dataset_test = EEGDataset(eeg_signals_path, image_transform, subject)
+        dataset_train = EEGDataset(eeg_signals_path,midas = midas, image_transform, subject)
+        dataset_test = EEGDataset(eeg_signals_path,midas = midas, image_transform, subject)
     split_train = Splitter(dataset_train, split_path = splits_path, split_num = 0, split_name = 'train', subject= subject)
     split_test = Splitter(dataset_test, split_path = splits_path, split_num = 0, split_name = 'test', subject = subject)
     return (split_train, split_test)
