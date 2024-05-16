@@ -73,7 +73,7 @@ if __name__ == '__main__':
     config.eeg_signals_path = os.path.join(config.root_path, 'datasets/eeg_5_95_std.pth')
     config.splits_path = os.path.join(config.root_path, 'datasets/block_splits_by_image_all.pth')
 
-    print(config.__dict__)
+    # print(config.__dict__)
 
     output_path = os.path.join(config.root_path, 'results', 'eval',  
                     '%s'%(datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")))
