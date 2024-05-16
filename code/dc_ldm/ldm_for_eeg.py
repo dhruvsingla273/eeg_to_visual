@@ -178,10 +178,10 @@ class eLDM:
             # print("printing in generate")
             shape = (self.ldm_config.model.params.channels, 
                 self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
-            print(self.ldm_config.model.params.channels, 
-                self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
-            print(self.ldm_config.model.params.image_size)
-            print(self.ldm_config.model.params.channels)
+            # print(self.ldm_config.model.params.channels, 
+            #     self.ldm_config.model.params.image_size, self.ldm_config.model.params.image_size)
+            # print(self.ldm_config.model.params.image_size)
+            # print(self.ldm_config.model.params.channels)
 
             # print(shape)
         else:
@@ -206,7 +206,7 @@ class eLDM:
                 print("gernetrate fxn")
                 # print(item.shape)
                 latent = item['eeg']
-                print(latent.shape)
+                # print(latent.shape)
                 gt_image = rearrange(item['image'], 'h w c -> 1 c h w') # h w c
                 print(f"rendering {num_samples} examples in {ddim_steps} steps.")
                 # assert latent.shape[-1] == self.fmri_latent_dim, 'dim error'
