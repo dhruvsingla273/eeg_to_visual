@@ -203,7 +203,7 @@ class eLDM:
                 if limit is not None:
                     if count >= limit:
                         break
-                # print(item)
+                print(item.shape)
                 latent = item['eeg']
                 gt_image = rearrange(item['image'], 'h w c -> 1 c h w') # h w c
                 print(f"rendering {num_samples} examples in {ddim_steps} steps.")
